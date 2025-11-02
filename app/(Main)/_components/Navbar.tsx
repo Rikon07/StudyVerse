@@ -64,13 +64,13 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           {/* <ThemeToggle /> */}
           <ThemeToggleButton
-      theme={theme === "light" ? "light" : "dark"}
-      variant="polygon" 
-      start="center"
-      onClick={handleToggle}
-      showLabel={false}
-      className="rounded-full"
-    />
+            theme={theme === "light" ? "light" : "dark"}
+            variant="polygon" 
+            start="center"
+            onClick={handleToggle}
+            showLabel={false}
+            className="rounded-xl cursor-pointer"
+            />
           <Link
             href="/login"
             className={cn(buttonVariants({ size: "sm", variant: "outline" }))}

@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import CarouselCards from "./_components/carousel";
 
 interface featureProps {
   title: string;
@@ -32,7 +33,7 @@ const features: featureProps[] = [
     description: 'Join a vibrant community of learners and educators to share knowledge, ask questions, and collaborate.',
     icon: '🫂',
   }
-]
+];
 
 export default function Home() {
   return (
@@ -57,7 +58,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
           {
             features.map((feature, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
@@ -72,6 +73,8 @@ export default function Home() {
             ))
           }
         </section>
+
+        <CarouselCards />
     </>
   );
 }
