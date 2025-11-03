@@ -5,6 +5,9 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import CarouselCards from "./_components/carousel";
+import CarouselCourses from "./_components/carousel";
+
+
 
 interface featureProps {
   title: string;
@@ -73,8 +76,8 @@ export default function Home() {
             ))
           }
         </section>
+        <CarouselCourses />
 
-        <CarouselCards />
     </>
   );
 }
