@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {
     domains: ["images.unsplash.com",
-      "plus.unsplash.com", "img-c.udemycdn.com", 
+      "plus.unsplash.com", "img-c.udemycdn.com", "i.pinimg.com" , "ik.imagekit.io"
     ], // ✅ add your external domain(s) here
   },
 };

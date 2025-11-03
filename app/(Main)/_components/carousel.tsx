@@ -36,7 +36,7 @@ const courses: Course[] = [
     id: 3,
     title: "Data Science with Python",
     category: "Data Science",
-    imageUrl: "https://img-c.udemycdn.com/course/750x422/2686148_3670_6.jpg",
+    imageUrl: "https://i.pinimg.com/1200x/46/6c/11/466c1124134f99258412a4a53cace519.jpg",
     level: "Advanced",
   },
   {
@@ -68,19 +68,24 @@ const CourseCard = ({ course }: { course: Course }) => (
       <TooltipTrigger asChild>
         <motion.div
           className="w-72 h-96 shrink-0 rounded-2xl overflow-hidden border border-border shadow-sm bg-card hover:shadow-lg transition-all relative group"
-          whileHover={{ y: -6, transition: { type: "spring", stiffness: 300 } }}
+          whileHover={{ y: -6, transition: { type: 'spring', stiffness: 300 } }}
         >
           <Image
             src={course.imageUrl}
             alt={course.title}
-            width={32}
-            height={48}
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            quality={100}
+            priority
+            className="absolute inset-0 object-cover group-hover:scale-110 transition-transform duration-700"
           />
+
           <div className="absolute inset-0 bg-linear-to-t from-background/90 via-background/40 to-transparent"></div>
 
           <div className="relative z-10 h-full flex flex-col justify-end p-5 text-white space-y-2">
-            <Badge variant="secondary" className="w-fit">{course.category}</Badge>
+            <Badge variant="secondary" className="w-fit">
+              {course.category}
+            </Badge>
             <CardTitle className="text-lg md:text-xl font-semibold">
               {course.title}
             </CardTitle>
@@ -104,6 +109,7 @@ const CourseCard = ({ course }: { course: Course }) => (
     </Tooltip>
   </TooltipProvider>
 );
+
 
 export default function CarouselCourses() {
   const trackRef = useRef<HTMLDivElement>(null);
