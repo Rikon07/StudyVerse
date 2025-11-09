@@ -4,7 +4,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -15,6 +15,7 @@ import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -29,6 +30,13 @@ export default function Navbar() {
       setTheme(theme === "light" ? "dark" : "light");
     });
   };
+
+  useEffect(() => {
+    // Avoid SSR/client mismatch from theme-dependent rendering.
+    // Defer setState to the next tick to avoid synchronous state update warnings.
+    const t = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-backdrop-filter:bg-background/60">
@@ -63,14 +71,16 @@ export default function Navbar() {
         {/* Right Section */}
         <div className="hidden md:flex items-center gap-3">
           {/* <ThemeToggle /> */}
-          <ThemeToggleButton
-            theme={theme === "light" ? "light" : "dark"}
-            variant="polygon" 
-            start="center"
-            onClick={handleToggle}
-            showLabel={false}
-            className="rounded-xl cursor-pointer"
+          {mounted && (
+            <ThemeToggleButton
+              theme={theme === "light" ? "light" : "dark"}
+              variant="polygon"
+              start="center"
+              onClick={handleToggle}
+              showLabel={false}
+              className="rounded-xl cursor-pointer"
             />
+          )}
           <Link
             href="/login"
             className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
@@ -124,7 +134,7 @@ export default function Navbar() {
               >
                 Sign Up
               </Link>
-              <ThemeToggle />
+              {mounted && <ThemeToggle />}
             </div>
           </div>
         </div>

@@ -4,8 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import CarouselCourses from "./_components/carousel";
-
 
 
 interface featureProps {
@@ -75,7 +73,6 @@ export default function Home() {
             ))
           }
         </section>
-        <CarouselCourses />
     </>
   );
 }
